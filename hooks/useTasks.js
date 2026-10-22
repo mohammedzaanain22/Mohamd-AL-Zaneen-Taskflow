@@ -7,7 +7,9 @@ import { sortNewest } from "@/lib/utils";
 export function useTasks(projectId, enabled) {
   const [state, setState] = useState({ tasks: [], loading: true, error: "" });
 
+  
   useEffect(() => {
+    
     if (!enabled) return;
     return subscribeToTasks(
       projectId,
@@ -19,7 +21,6 @@ export function useTasks(projectId, enabled) {
   return state;
 }
 
-// Dashboard: one listener per project, merged into a single list.
 export function useAllTasks(projects) {
   const key = projects.map((p) => p.id).sort().join(",");
   const ids = useMemo(() => (key ? key.split(",") : []), [key]);
@@ -27,6 +28,7 @@ export function useAllTasks(projects) {
   const [error, setError] = useState("");
 
   useEffect(() => {
+    setError("");
     const unsubscribers = ids.map((id) =>
       subscribeToTasks(
         id,

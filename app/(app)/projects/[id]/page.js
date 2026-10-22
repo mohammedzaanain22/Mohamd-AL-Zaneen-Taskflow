@@ -32,15 +32,19 @@ export default function ProjectPage() {
   const [deleteTarget, setDeleteTarget] = useState(null);
   const [actionError, setActionError] = useState("");
 
-  const visible = useMemo(() => {
+    const visible = useMemo(() => {
     const term = filters.search.trim().toLowerCase();
-    return tasks.filter(
-      (t) =>
+    return tasks.filter((t) => {
+      const matchesAssignee =
+        !filters.assignee ||
+        (filters.assignee === "unassigned" ? !t.assigneeId : t.assigneeId === filters.assignee);
+      return (
         t.title.toLowerCase().includes(term) &&
         (!filters.status || t.status === filters.status) &&
         (!filters.priority || t.priority === filters.priority) &&
-        (!filters.assignee || t.assigneeId === filters.assignee)
-    );
+        matchesAssignee
+      );
+    });
   }, [tasks, filters]);
 
   if (loading) {
@@ -126,7 +130,12 @@ export default function ProjectPage() {
         )}
       </div>
 
-      <FilterBar filters={filters} onChange={setFilters} members={members} />
+            <FilterBar
+        filters={filters}
+        onChange={setFilters}
+        onClear={() => setFilters(EMPTY_FILTERS)}
+        members={members}
+      />
 
       <div className="flex items-center justify-between">
         <h2 className="text-lg font-medium">Tasks ({visible.length})</h2>
