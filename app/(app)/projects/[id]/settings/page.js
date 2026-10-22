@@ -35,7 +35,7 @@ export default function ProjectSettingsPage() {
   if (error === "denied") {
     return (
       <StateMessage title="Access denied">
-        You aren't a member of this project, or it doesn't exist.
+        You aren&apos;t a member of this project, or it doesn&apos;t exist.
       </StateMessage>
     );
   }
