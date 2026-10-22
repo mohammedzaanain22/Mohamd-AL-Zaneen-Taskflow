@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# TaskFlow - Demo Accounts
 
-## Getting Started
+These are test accounts made only for the demo. They do not belong to real people.
 
-First, run the development server:
+| Role | Email | Password |
+| --- | --- | --- |
+| Owner (admin) | A@A.com | A@A.com |
+| Member | M@A.com | M@A.com |
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Login page: add the deployed link here after publishing.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Demo project
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Project name: Website Redesign (owner: A, member: M)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Task | Status | Priority | Assigned to | Due date |
+| --- | --- | --- | --- | --- |
+| Build navbar | In progress | High | M | |
+| Create login page | To do | Medium | nobody | |
+| Test responsive layout | Done | Low | A | |
+| Fix overdue bug | To do | High | M | the day before the demo |
 
-## Learn More
+There is also a second project called "Private project" owned by A. M is not a member of it, so it is used to show the "Access denied" page.
 
-To learn more about Next.js, take a look at the following resources:
+## What each account can do
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Action | Owner (A) | Member (M) |
+| --- | --- | --- |
+| See the project | Yes | Yes |
+| Edit or delete the project | Yes | No |
+| Add or remove members | Yes | No |
+| Create tasks | Yes | Yes |
+| Edit a task | Any task | Own tasks or tasks assigned to M |
+| Change task status | Any task | Only tasks assigned to M |
+| Delete a task | Any task | Only tasks M created |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Short demo steps (5 minutes)
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Log in as A. Show the dashboard (counts, projects, overdue tasks).
+2. Open Website Redesign. Create a task, then search and filter.
+3. Open Settings. Show the members list and try adding an email that does not exist.
+4. Log in as M in a different browser. M sees the same project but no Settings button.
+5. As M, change the status of a task assigned to M. Try a task that is not assigned to M (no controls shown).
+6. As M, open the link of "Private project" to show Access denied.
+7. Show the mobile layout (375px) and the Firestore rules screenshots.
